@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stecom - Soluciones Tecnológicas Comerciales</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: sans-serif;
+      background: #fff;
+      color: #222;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    header, footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      background-color: #444;
+      color: white;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: #222;
+    }
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 1rem;
+      transition: background-color 0.3s ease-in-out;
+      border-radius: 6px;
+    }
+    nav a:hover {
+      background-color: #888;
+    }
+    .page {
+      display: none;
+      padding: 3rem 1rem;
+      max-width: 900px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .active-page {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    video {
+      width: 100%;
+      margin-top: 1.5rem;
+      border-radius: 6px;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 1rem;
+    }
+    ul li {
+      margin: 1rem 0;
+    }
+    .contact-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #444;
+      color: white;
+      padding: 1rem;
+      border-radius: 50%;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .contact-btn:hover {
+      transform: scale(1.1);
+    }
+    @media (max-width: 600px) {
+      nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        background: #222;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-top: 3rem;
+        transition: transform 0.3s ease;
+        z-index: 1;
+      }
+      nav a {
+        width: 100%;
+        text-align: center;
+        padding: 1.5rem 0;
+      }
+      nav.open {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 2rem;
+        color: white;
+        margin-left: auto;
+      }
+    }
+    #loader {
+      display: none;
+      margin-top: 1rem;
+      border: 6px solid #f3f3f3;
+      border-top: 6px solid #444;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("qePCTuyu5Pyg7Ep2y");
+    })();
+
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('open');
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Stecom</h1>
+    <p>Soluciones Tecnológicas Comerciales</p>
+  </header>
+
+  <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+
+  <nav>
+    <a href="#" onclick="navigateTo('inicio')">Inicio</a>
+    <a href="#" onclick="navigateTo('refrigeracion')">Refrigeración</a>
+    <a href="#" onclick="navigateTo('coccion')">Cocción</a>
+    <a href="#" onclick="navigateTo('panaderia')">Panadería</a>
+    <a href="#" onclick="navigateTo('carniceria')">Carnicería</a>
+    <a href="#" onclick="navigateTo('contacto')">Contacto</a>
+  </nav>
+
+  <div id="inicio" class="page active-page">
+    <h2>Bienvenido a Stecom</h2>
+    <p>Especialistas en mantenimiento de equipos de refrigeración, cocción y maquinaria comercial para panaderías y carnicerías.</p>
+  </div>
+
+  <div id="refrigeracion" class="page">
+    <h2>Refrigeración Comercial</h2>
+    <p>Mantenimiento de cámaras frigoríficas, vitrinas, enfriadores y congeladores.</p>
+    <div class="gallery">
+      <img src="imagenes/Trabajo 1.jpeg" alt="Refrigerador comercial reparado">
+      <img src="imagenes/Trabajo 2.jpeg" alt="Servicio técnico en cámara fría">
+    </div>
+    <video controls>
+      <source src="videos/refrigeracion.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+  </div>
+
+  <div id="coccion" class="page">
+    <h2>Equipos de Cocción</h2>
+    <p>Servicio técnico para hornos, freidoras, estufas y parrillas.</p>
+    <div class="gallery">
+      <img src="imagenes/coccion1.jpg" alt="Reparación de horno industrial">
+      <img src="imagenes/coccion2.jpg" alt="Mantenimiento a parrilla">
+    </div>
+    <video controls>
+      <source src="videos/coccion.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+  </div>
+
+  <div id="panaderia" class="page">
+    <h2>Maquinaria de Panadería</h2>
+    <p>Reparación de amasadoras, hornos, batidoras y más.</p>
+    <div class="gallery">
+      <img src="imagenes/panaderia1.jpg" alt="Amasadora en reparación">
+      <img src="imagenes/panaderia2.jpg" alt="Taller de panadería en mantenimiento">
+    </div>
+    <video controls>
+      <source src="videos/panaderia.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+  </div>
+
+  <div id="carniceria" class="page">
+    <h2>Equipos de Carnicería</h2>
+    <p>Mantenimiento de molinos, sierras, rebanadoras y empacadoras.</p>
+    <div class="gallery">
+      <img src="imagenes/carniceria1.jpg" alt="Molino reparado">
+      <img src="imagenes/carniceria2.jpg" alt="Sierra de carnicería">
+    </div>
+    <video controls>
+      <source src="videos/carniceria.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+  </div>
+
+  <div id="contacto" class="page">
+    <h2>Contacto</h2>
+    <form id="contact-form" style="margin-top: 2rem;">
+      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+
+      <label for="asunto">Asunto:</label><br>
+      <input type="text" id="asunto" name="asunto" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+
+      <label for="correo">Correo electrónico:</label><br>
+      <input type="email" id="correo" name="correo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+
+      <label for="telefono">Teléfono:</label><br>
+      <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" title="Debe ser un número de 10 dígitos" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+
+      <label for="mensaje">Mensaje:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="4" required style="width: 100%; padding: 0.5rem;"></textarea><br><br>
+
+      <button type="submit" style="background-color: #444; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer;">Enviar</button>
+    </form>
+
+    <div id="loader"></div>
+    <p id="form-status" style="margin-top: 1rem;"></p>
+  </div>
+
+  <div class="contact-btn" onclick="navigateTo('contacto')">📞</div>
+
+  <footer>
+    <p>&copy; 2025 Stecom. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+      const target = document.getElementById(pageId);
+      target.classList.add('active-page');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById("contact-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = this;
+      const status = document.getElementById("form-status");
+      const loader = document.getElementById("loader");
+
+      status.innerHTML = "";
+      loader.style.display = "inline-block";
+
+      emailjs.sendForm('service_saxucfp', 'template_50cq0q1', form)
+        .then(() => {
+          loader.style.display = "none";
+          status.innerHTML = "✅ Mensaje enviado correctamente.";
+          form.reset();
+        }, (err) => {
+          loader.style.display = "none";
+          status.innerHTML = "❌ Error al enviar el mensaje. Intenta más tarde.";
+          console.error(err);
+        });
+    });
+  </script>
+</body>
+</html>
