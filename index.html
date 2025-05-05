@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -33,7 +34,7 @@
       gap: 1rem;
       padding: 1rem;
       background: #222;
-      position: relative;
+      flex-wrap: wrap;
     }
     nav a {
       text-decoration: none;
@@ -45,46 +46,6 @@
     }
     nav a:hover {
       background-color: #888;
-    }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-    }
-    .hamburger div {
-      width: 25px;
-      height: 3px;
-      background-color: white;
-      margin: 4px 0;
-      transition: all 0.3s ease;
-    }
-    .hamburger.active div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.active div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
-    }
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      background: #222;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      transition: all 0.3s ease-in-out;
-    }
-    .mobile-nav.open {
-      display: flex;
-    }
-    .mobile-nav a {
-      padding: 1.2rem;
-      text-align: center;
-      border-bottom: 1px solid #333;
     }
     .page {
       display: none;
@@ -141,6 +102,7 @@
       font-size: 1.5rem;
       cursor: pointer;
       transition: transform 0.3s ease;
+      z-index: 1000;
     }
     .contact-btn:hover {
       transform: scale(1.1);
@@ -148,13 +110,11 @@
     @media (max-width: 600px) {
       nav {
         flex-direction: column;
-        align-items: flex-start;
-      }
-      .hamburger {
-        display: flex;
+        align-items: center;
       }
       nav a {
-        display: none;
+        width: 100%;
+        text-align: center;
       }
     }
     #loader {
@@ -187,64 +147,78 @@
   </header>
 
   <nav>
-    <div class="hamburger" onclick="toggleMenu(event)">
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-    <div class="mobile-nav" id="mobileMenu" onclick="event.stopPropagation()">
-      <a href="#" onclick="navigateTo('inicio')">Inicio</a>
-      <a href="#" onclick="navigateTo('refrigeracion')">Refrigeración</a>
-      <a href="#" onclick="navigateTo('coccion')">Cocción</a>
-      <a href="#" onclick="navigateTo('panaderia')">Panadería</a>
-      <a href="#" onclick="navigateTo('carniceria')">Carnicería</a>
-      <a href="#" onclick="navigateTo('contacto')">Contacto</a>
-    </div>
+    <a href="#" onclick="navigateTo('inicio')">Inicio</a>
+    <a href="#" onclick="navigateTo('refrigeracion')">Refrigeración</a>
+    <a href="#" onclick="navigateTo('coccion')">Cocción</a>
+    <a href="#" onclick="navigateTo('panaderia')">Panadería</a>
+    <a href="#" onclick="navigateTo('carniceria')">Carnicería</a>
+    <a href="#" onclick="navigateTo('contacto')">Contacto</a>
   </nav>
 
   <div id="inicio" class="page active-page">
     <h2>Bienvenido a Stecom</h2>
-    <p>Ofrecemos mantenimiento especializado para equipos de refrigeración, cocción, panadería y carnicería.</p>
+    <p>Especialistas en mantenimiento de equipos de refrigeración, cocción y maquinaria comercial para panaderías y carnicerías.</p>
+    <div class="gallery"></div>
+    <video controls src="videos/inicio.mp4"></video>
   </div>
 
   <div id="refrigeracion" class="page">
-    <h2>Servicio de Refrigeración</h2>
-    <p>Mantenimiento, reparación e instalación de cámaras, vitrinas y refrigeradores industriales.</p>
-    <div class="gallery"></div>
+    <h2>Refrigeración Comercial</h2>
+    <p>Mantenimiento de cámaras frigoríficas, vitrinas, enfriadores y congeladores.</p>
+    <div class="gallery">
+      <img src="imagenes/Trabajo 1.jpeg" alt="Refrigerador comercial reparado">
+      <img src="imagenes/Trabajo 2.jpeg" alt="Servicio técnico en cámara fría">
+    </div>
     <video controls src="videos/refrigeracion.mp4"></video>
   </div>
 
   <div id="coccion" class="page">
-    <h2>Servicio de Cocción</h2>
-    <p>Reparamos hornos, estufas industriales, freidoras y más.</p>
-    <div class="gallery"></div>
+    <h2>Equipos de Cocción</h2>
+    <p>Servicio técnico para hornos, freidoras, estufas y parrillas.</p>
+    <div class="gallery">
+      <img src="imagenes/coccion1.jpg" alt="Reparación de horno industrial">
+      <img src="imagenes/coccion2.jpg" alt="Mantenimiento a parrilla">
+    </div>
     <video controls src="videos/coccion.mp4"></video>
   </div>
 
   <div id="panaderia" class="page">
-    <h2>Servicio para Panadería</h2>
-    <p>Atendemos amasadoras, batidoras, hornos y cámaras de fermentación.</p>
-    <div class="gallery"></div>
+    <h2>Maquinaria de Panadería</h2>
+    <p>Reparación de amasadoras, hornos, batidoras y más.</p>
+    <div class="gallery">
+      <img src="imagenes/panaderia1.jpg" alt="Amasadora en reparación">
+      <img src="imagenes/panaderia2.jpg" alt="Taller de panadería en mantenimiento">
+    </div>
     <video controls src="videos/panaderia.mp4"></video>
   </div>
 
   <div id="carniceria" class="page">
-    <h2>Servicio para Carnicería</h2>
-    <p>Reparamos sierras, molinos, embutidoras, rebanadoras y más maquinaria.</p>
-    <div class="gallery"></div>
+    <h2>Equipos de Carnicería</h2>
+    <p>Mantenimiento de molinos, sierras, rebanadoras y empacadoras.</p>
+    <div class="gallery">
+      <img src="imagenes/carniceria1.jpg" alt="Molino reparado">
+      <img src="imagenes/carniceria2.jpg" alt="Sierra de carnicería">
+    </div>
     <video controls src="videos/carniceria.mp4"></video>
   </div>
 
   <div id="contacto" class="page">
-    <h2>Contáctanos</h2>
-    <form id="contact-form">
-      <label>Nombre:<br><input type="text" name="nombre" required></label><br><br>
-      <label>Correo electrónico:<br><input type="email" name="correo" required></label><br><br>
-      <label>Mensaje:<br><textarea name="mensaje" required></textarea></label><br><br>
-      <button type="submit">Enviar</button>
-      <div id="loader"></div>
-      <div id="form-status"></div>
+    <h2>Contacto</h2>
+    <form id="contact-form" style="margin-top: 2rem;">
+      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+      <label for="asunto">Asunto:</label><br>
+      <input type="text" id="asunto" name="asunto" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+      <label for="correo">Correo electrónico:</label><br>
+      <input type="email" id="correo" name="correo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+      <label for="telefono">Teléfono:</label><br>
+      <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" title="Debe ser un número de 10 dígitos" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
+      <label for="mensaje">Mensaje:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="4" required style="width: 100%; padding: 0.5rem;"></textarea><br><br>
+      <button type="submit" style="background-color: #444; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer;">Enviar</button>
     </form>
+    <div id="loader"></div>
+    <p id="form-status" style="margin-top: 1rem;"></p>
   </div>
 
   <div class="contact-btn" onclick="navigateTo('contacto')">📞</div>
@@ -259,29 +233,7 @@
       const target = document.getElementById(pageId);
       target.classList.add('active-page');
       window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      const menu = document.getElementById("mobileMenu");
-      const burger = document.querySelector(".hamburger");
-      menu.classList.remove("open");
-      burger.classList.remove("active");
     }
-
-    function toggleMenu(event) {
-      event.stopPropagation();
-      const menu = document.getElementById("mobileMenu");
-      const burger = document.querySelector(".hamburger");
-      menu.classList.toggle("open");
-      burger.classList.toggle("active");
-    }
-
-    window.addEventListener("click", () => {
-      const menu = document.getElementById("mobileMenu");
-      const burger = document.querySelector(".hamburger");
-      if (menu.classList.contains("open")) {
-        menu.classList.remove("open");
-        burger.classList.remove("active");
-      }
-    });
 
     document.getElementById("contact-form").addEventListener("submit", function(e) {
       e.preventDefault();
