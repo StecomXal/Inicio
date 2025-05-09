@@ -4,32 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stecom - Soluciones Tecnológicas Comerciales</title>
+
+  <!-- Fuentes elegantes -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
+
     body {
-      font-family: sans-serif;
-      background: #fff;
+      font-family: 'Open Sans', sans-serif;
+      background: #f4f4f4;
       color: #222;
-      line-height: 1.6;
       overflow-x: hidden;
     }
-    header, footer {
+
+    header {
+      position: relative;
       text-align: center;
-      padding: 3rem 1rem;
-      background-color: #444;
+      padding: 4rem 1rem;
       color: white;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/fondo-header.jpg') center/cover no-repeat;
+      animation: fadeInDown 2s ease-in-out;
     }
+
+    header img {
+      width: 80px;
+      margin-bottom: 1rem;
+    }
+
     header h1 {
-      font-size: 2.5rem;
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
       margin-bottom: 0.5rem;
+      letter-spacing: 2px;
     }
+
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
     nav {
-      background: #222;
+      background: #111;
     }
+
     .menu-toggle {
       display: none;
       background: none;
@@ -39,92 +62,129 @@
       padding: 1rem;
       cursor: pointer;
     }
+
     #menu {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 1rem;
       padding: 1rem;
-      flex-wrap: wrap;
     }
+
     #menu a {
       text-decoration: none;
       color: white;
       font-weight: bold;
-      padding: 1rem;
-      transition: background-color 0.3s ease-in-out;
-      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      border-radius: 4px;
+      transition: background-color 0.4s ease;
     }
+
     #menu a:hover {
-      background-color: #888;
+      background-color: #333;
     }
+
     .page {
       display: none;
       padding: 3rem 1rem;
       max-width: 900px;
       margin: auto;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      animation: fadeInUp 1.8s ease-in-out;
     }
+
     .active-page {
       display: block;
-      opacity: 1;
-      transform: translateY(0);
     }
+
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.5rem;
       margin-top: 2rem;
     }
+
     .gallery img {
       width: 100%;
       border-radius: 6px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.4s ease;
     }
+
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
+
     video {
       width: 100%;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       border-radius: 6px;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
     }
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 1rem;
-    }
-    ul li {
-      margin: 1rem 0;
-    }
+
     .contact-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #444;
+      background-color: #222;
       color: white;
       padding: 1rem;
       border-radius: 50%;
-      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
       font-size: 1.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       cursor: pointer;
-      transition: transform 0.3s ease;
       z-index: 1000;
+      transition: transform 0.3s ease;
     }
+
     .contact-btn:hover {
       transform: scale(1.1);
     }
+
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     @media (max-width: 600px) {
       .menu-toggle {
         display: block;
       }
       #menu {
+        display: none;
         flex-direction: column;
         align-items: center;
-        display: none;
       }
       #menu.show {
         display: flex;
@@ -134,31 +194,36 @@
         text-align: center;
       }
     }
-    #loader {
-      display: none;
-      margin-top: 1rem;
-      border: 6px solid #f3f3f3;
-      border-top: 6px solid #444;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      animation: spin 0.8s linear infinite;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
   </style>
 
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    (function() {
-      emailjs.init("qePCTuyu5Pyg7Ep2y");
-    })();
+    function navigateTo(pageId) {
+      document.querySelectorAll('.page').forEach(p => {
+        p.classList.remove('active-page');
+        void p.offsetWidth; // reinicia animación
+      });
+      const target = document.getElementById(pageId);
+      target.classList.add('active-page');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+
+    document.addEventListener("click", function (e) {
+      const menu = document.getElementById("menu");
+      const toggle = document.querySelector(".menu-toggle");
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove("show");
+      }
+    });
   </script>
 </head>
 <body>
+
   <header>
+    <img src="imagenes/logo-stecom.png" alt="Logo Stecom" />
     <h1>Stecom</h1>
     <p>Soluciones Tecnológicas Comerciales</p>
   </header>
@@ -177,14 +242,13 @@
 
   <div id="inicio" class="page active-page">
     <h2>Bienvenido a Stecom</h2>
-    <p>Especialistas en mantenimiento de equipos de refrigeración, cocción y maquinaria comercial para panaderías y carnicerías.</p>
-    <div class="gallery"></div>
+    <p>Somos especialistas en el mantenimiento y reparación de equipos industriales para comercios del sector alimentario.</p>
     <video controls src="videos/inicio.mp4"></video>
   </div>
 
   <div id="refrigeracion" class="page">
     <h2>Refrigeración Comercial</h2>
-    <p>Mantenimiento de cámaras frigoríficas, vitrinas, enfriadores y congeladores.</p>
+    <p>Servicio técnico de cámaras frigoríficas, vitrinas, congeladores y más. Garantizamos la eficiencia de tu equipo en todo momento.</p>
     <div class="gallery">
       <img src="imagenes/Trabajo 1.jpeg" alt="Refrigerador comercial reparado">
       <img src="imagenes/Trabajo 2.jpeg" alt="Servicio técnico en cámara fría">
@@ -194,7 +258,7 @@
 
   <div id="coccion" class="page">
     <h2>Equipos de Cocción</h2>
-    <p>Servicio técnico para hornos, freidoras, estufas y parrillas.</p>
+    <p>Soluciones rápidas y efectivas para hornos, freidoras, estufas y cocinas industriales.</p>
     <div class="gallery">
       <img src="imagenes/coccion1.jpg" alt="Reparación de horno industrial">
       <img src="imagenes/coccion2.jpg" alt="Mantenimiento a parrilla">
@@ -204,7 +268,7 @@
 
   <div id="panaderia" class="page">
     <h2>Maquinaria de Panadería</h2>
-    <p>Reparación de amasadoras, hornos, batidoras y más.</p>
+    <p>Expertos en hornos, batidoras, amasadoras y más. Ideal para panaderías que requieren continuidad en su producción.</p>
     <div class="gallery">
       <img src="imagenes/panaderia1.jpg" alt="Amasadora en reparación">
       <img src="imagenes/panaderia2.jpg" alt="Taller de panadería en mantenimiento">
@@ -214,7 +278,7 @@
 
   <div id="carniceria" class="page">
     <h2>Equipos de Carnicería</h2>
-    <p>Mantenimiento de molinos, sierras, rebanadoras y empacadoras.</p>
+    <p>Desde molinos hasta empacadoras. Te ayudamos a mantener tu carnicería operativa y segura.</p>
     <div class="gallery">
       <img src="imagenes/carniceria1.jpg" alt="Molino reparado">
       <img src="imagenes/carniceria2.jpg" alt="Sierra de carnicería">
@@ -224,21 +288,15 @@
 
   <div id="contacto" class="page">
     <h2>Contacto</h2>
-    <form id="contact-form" style="margin-top: 2rem;">
-      <label for="nombre">Nombre:</label><br>
-      <input type="text" id="nombre" name="nombre" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
-      <label for="asunto">Asunto:</label><br>
-      <input type="text" id="asunto" name="asunto" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
-      <label for="correo">Correo electrónico:</label><br>
-      <input type="email" id="correo" name="correo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
-      <label for="telefono">Teléfono:</label><br>
-      <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" title="Debe ser un número de 10 dígitos" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;"><br>
-      <label for="mensaje">Mensaje:</label><br>
-      <textarea id="mensaje" name="mensaje" rows="4" required style="width: 100%; padding: 0.5rem;"></textarea><br><br>
-      <button type="submit" style="background-color: #444; color: white; padding: 0.75rem 1.5rem; border: none; border-radius: 6px; cursor: pointer;">Enviar</button>
+    <p>¿Necesitás asistencia técnica o una cotización? Envianos tu mensaje y nos pondremos en contacto a la brevedad.</p>
+    <form>
+      <input type="text" placeholder="Nombre completo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+      <input type="email" placeholder="Correo electrónico" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+      <input type="tel" placeholder="Teléfono" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+      <textarea rows="4" placeholder="Mensaje" style="width: 100%; padding: 0.5rem;"></textarea>
+      <br><br>
+      <button type="submit" style="background-color: #222; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px;">Enviar</button>
     </form>
-    <div id="loader"></div>
-    <p id="form-status" style="margin-top: 1rem;"></p>
   </div>
 
   <div class="contact-btn" onclick="navigateTo('contacto')">📞</div>
@@ -247,61 +305,5 @@
     <p>&copy; 2025 Stecom. Todos los derechos reservados.</p>
   </footer>
 
-  <script>
-    function navigateTo(pageId) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-      const target = document.getElementById(pageId);
-      target.classList.add('active-page');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("show");
-    }
-
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const form = this;
-      const status = document.getElementById("form-status");
-      const loader = document.getElementById("loader");
-
-      status.innerHTML = "";
-      loader.style.display = "inline-block";
-
-      emailjs.sendForm('service_saxucfp', 'template_50cq0q1', form)
-        .then(() => {
-          loader.style.display = "none";
-          status.innerHTML = "✅ Mensaje enviado correctamente.";
-          form.reset();
-        }, (err) => {
-          loader.style.display = "none";
-          status.innerHTML = "❌ Error al enviar el mensaje. Intenta más tarde.";
-          console.error(err);
-        });
-    });
-
-    // Cerrar menú si se hace clic fuera
-    document.addEventListener("click", function (e) {
-      const menu = document.getElementById("menu");
-      const toggle = document.querySelector(".menu-toggle");
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        menu.classList.remove("show");
-      }
-    });
-
-    // Cerrar menú al deslizar hacia arriba en móvil
-    let touchStartY = 0;
-
-    document.addEventListener("touchstart", function (e) {
-      touchStartY = e.changedTouches[0].clientY;
-    }, { passive: true });
-
-    document.addEventListener("touchend", function (e) {
-      const touchEndY = e.changedTouches[0].clientY;
-      if (touchStartY - touchEndY > 50) {
-        document.getElementById("menu").classList.remove("show");
-      }
-    }, { passive: true });
-  </script>
 </body>
 </html>
