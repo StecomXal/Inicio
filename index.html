@@ -1,5 +1,4 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -29,14 +28,25 @@
       margin-bottom: 0.5rem;
     }
     nav {
+      background: #222;
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 1rem;
+      cursor: pointer;
+    }
+    #menu {
       display: flex;
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
-      background: #222;
       flex-wrap: wrap;
     }
-    nav a {
+    #menu a {
       text-decoration: none;
       color: white;
       font-weight: bold;
@@ -44,7 +54,7 @@
       transition: background-color 0.3s ease-in-out;
       border-radius: 6px;
     }
-    nav a:hover {
+    #menu a:hover {
       background-color: #888;
     }
     .page {
@@ -108,11 +118,18 @@
       transform: scale(1.1);
     }
     @media (max-width: 600px) {
-      nav {
+      .menu-toggle {
+        display: block;
+      }
+      #menu {
         flex-direction: column;
         align-items: center;
+        display: none;
       }
-      nav a {
+      #menu.show {
+        display: flex;
+      }
+      #menu a {
         width: 100%;
         text-align: center;
       }
@@ -147,12 +164,15 @@
   </header>
 
   <nav>
-    <a href="#" onclick="navigateTo('inicio')">Inicio</a>
-    <a href="#" onclick="navigateTo('refrigeracion')">Refrigeración</a>
-    <a href="#" onclick="navigateTo('coccion')">Cocción</a>
-    <a href="#" onclick="navigateTo('panaderia')">Panadería</a>
-    <a href="#" onclick="navigateTo('carniceria')">Carnicería</a>
-    <a href="#" onclick="navigateTo('contacto')">Contacto</a>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <div id="menu">
+      <a href="#" onclick="navigateTo('inicio'); toggleMenu()">Inicio</a>
+      <a href="#" onclick="navigateTo('refrigeracion'); toggleMenu()">Refrigeración</a>
+      <a href="#" onclick="navigateTo('coccion'); toggleMenu()">Cocción</a>
+      <a href="#" onclick="navigateTo('panaderia'); toggleMenu()">Panadería</a>
+      <a href="#" onclick="navigateTo('carniceria'); toggleMenu()">Carnicería</a>
+      <a href="#" onclick="navigateTo('contacto'); toggleMenu()">Contacto</a>
+    </div>
   </nav>
 
   <div id="inicio" class="page active-page">
@@ -235,6 +255,10 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("show");
+    }
+
     document.getElementById("contact-form").addEventListener("submit", function(e) {
       e.preventDefault();
       const form = this;
@@ -255,6 +279,29 @@
           console.error(err);
         });
     });
+
+    // Cerrar menú si se hace clic fuera
+    document.addEventListener("click", function (e) {
+      const menu = document.getElementById("menu");
+      const toggle = document.querySelector(".menu-toggle");
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.classList.remove("show");
+      }
+    });
+
+    // Cerrar menú al deslizar hacia arriba en móvil
+    let touchStartY = 0;
+
+    document.addEventListener("touchstart", function (e) {
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener("touchend", function (e) {
+      const touchEndY = e.changedTouches[0].clientY;
+      if (touchStartY - touchEndY > 50) {
+        document.getElementById("menu").classList.remove("show");
+      }
+    }, { passive: true });
   </script>
 </body>
 </html>
