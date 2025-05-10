@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stecom - Soluciones Tecnológicas Comerciales</title>
 
-  <!-- Fuentes elegantes -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 
   <style>
@@ -25,10 +24,10 @@
     header {
       position: relative;
       text-align: center;
-      padding: 4rem 1rem;
       color: white;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/fondo-header.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/fondo-header.jpeg') center/cover no-repeat;
       animation: fadeInDown 2s ease-in-out;
+      padding: 4rem 1rem;
     }
 
     header img {
@@ -156,42 +155,43 @@
     }
 
     @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      header {
+        padding: 4rem 1rem;
+      }
+
       .menu-toggle {
         display: block;
       }
+
       #menu {
         display: none;
         flex-direction: column;
         align-items: center;
       }
+
       #menu.show {
         display: flex;
       }
+
       #menu a {
         width: 100%;
         text-align: center;
+      }
+    }
+
+    @media (min-width: 769px) {
+      header {
+        padding: 8rem 1rem 4rem 1rem; /* más alto en escritorio */
       }
     }
   </style>
@@ -200,7 +200,7 @@
     function navigateTo(pageId) {
       document.querySelectorAll('.page').forEach(p => {
         p.classList.remove('active-page');
-        void p.offsetWidth; // reinicia animación
+        void p.offsetWidth;
       });
       const target = document.getElementById(pageId);
       target.classList.add('active-page');
@@ -218,12 +218,25 @@
         menu.classList.remove("show");
       }
     });
+
+    // Cerrar menú al hacer scroll táctil
+    let touchStartY = 0;
+    document.addEventListener("touchstart", e => {
+      touchStartY = e.touches[0].clientY;
+    });
+
+    document.addEventListener("touchmove", e => {
+      const currentY = e.touches[0].clientY;
+      if (Math.abs(currentY - touchStartY) > 10) {
+        document.getElementById("menu").classList.remove("show");
+      }
+    });
   </script>
 </head>
 <body>
 
   <header>
-    <img src="imagenes/logo-stecom.png" alt="Logo Stecom" />
+    
     <h1>Stecom</h1>
     <p>Soluciones Tecnológicas Comerciales</p>
   </header>
@@ -239,6 +252,16 @@
       <a href="#" onclick="navigateTo('contacto'); toggleMenu()">Contacto</a>
     </div>
   </nav>
+
+
+
+
+
+
+
+
+
+
 
   <div id="inicio" class="page active-page">
     <h2>Bienvenido a Stecom</h2>
@@ -298,6 +321,16 @@
       <button type="submit" style="background-color: #222; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px;">Enviar</button>
     </form>
   </div>
+
+
+
+
+
+
+
+
+
+
 
   <div class="contact-btn" onclick="navigateTo('contacto')">📞</div>
 
