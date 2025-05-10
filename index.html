@@ -191,12 +191,17 @@
 
     @media (min-width: 769px) {
       header {
-        padding: 8rem 1rem 4rem 1rem; /* más alto en escritorio */
+        padding: 8rem 1rem 4rem 1rem;
       }
     }
   </style>
 
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
+    (function () {
+      emailjs.init("qePCTuyu5Pyg7Ep2y");
+    })();
+
     function navigateTo(pageId) {
       document.querySelectorAll('.page').forEach(p => {
         p.classList.remove('active-page');
@@ -219,20 +224,41 @@
       }
     });
 
-   
+    let touchStartY = 0;
 
-    document.addEventListener("touchmove", e => {
-      const currentY = e.touches[0].clientY;
-      if (Math.abs(currentY - touchStartY) > 10) {
+    document.addEventListener("touchstart", function (e) {
+      touchStartY = e.changedTouches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener("touchend", function (e) {
+      const touchEndY = e.changedTouches[0].clientY;
+      if (touchStartY - touchEndY > 50) {
         document.getElementById("menu").classList.remove("show");
       }
+    }, { passive: true });
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById("form-status");
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        emailjs.sendForm('service_saxucfp', 'template_50cq0q1', form)
+          .then(() => {
+            status.innerHTML = "✅ Mensaje enviado correctamente.";
+            form.reset();
+          }, (err) => {
+            status.innerHTML = "❌ Error al enviar el mensaje. Intenta más tarde.";
+            console.error(err);
+          });
+      });
     });
   </script>
 </head>
 <body>
 
   <header>
-    
     <h1>Stecom</h1>
     <p>Soluciones Tecnológicas Comerciales</p>
   </header>
@@ -248,16 +274,6 @@
       <a href="#" onclick="navigateTo('contacto'); toggleMenu()">Contacto</a>
     </div>
   </nav>
-
-
-
-
-
-
-
-
-
-
 
   <div id="inicio" class="page active-page">
     <h2>Bienvenido a Stecom</h2>
@@ -306,27 +322,26 @@
   </div>
 
   <div id="contacto" class="page">
+
+
     <h2>Contacto</h2>
     <p>¿Necesitás asistencia técnica o una cotización? Envianos tu mensaje y nos pondremos en contacto a la brevedad.</p>
-    <form>
-      <input type="text" placeholder="Nombre completo" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
-      <input type="email" placeholder="Correo electrónico" required style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
-      <input type="tel" placeholder="Teléfono" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
-      <textarea rows="4" placeholder="Mensaje" style="width: 100%; padding: 0.5rem;"></textarea>
+    <form id="contact-form">
+      <input type="text" name="nombre" placeholder="Nombre completo" required pattern="[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios. Sin números ni símbolos." style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+	<input type="text" name="asunto" placeholder="Asunto" required pattern="[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]+" title="Solo letras y espacios. Sin números ni símbolos." style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+
+      <input type="email" name="correo" placeholder="Correo electrónico" required title="Ejemplo: ejemplo@dominio.com" style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+
+      <input type="tel" name="telefono" placeholder="Teléfono" required pattern="[0-9]{10}" title="Debe tener exactamente 10 dígitos." style="width: 100%; padding: 0.5rem; margin-bottom: 1rem;" />
+     
+ <textarea name="mensaje" rows="4" placeholder="mensaje" required style="width: 100%; padding: 0.5rem;"></textarea>
       <br><br>
+
+
       <button type="submit" style="background-color: #222; color: white; padding: 0.75rem 2rem; border: none; border-radius: 6px;">Enviar</button>
+      <span id="form-status" style="display:block; margin-top:1rem;"></span>
     </form>
   </div>
-
-
-
-
-
-
-
-
-
-
 
   <div class="contact-btn" onclick="navigateTo('contacto')">📞</div>
 
@@ -334,62 +349,6 @@
     <p>&copy; 2025 Stecom. Todos los derechos reservados.</p>
   </footer>
 
-  <script>
-    function navigateTo(pageId) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
-      const target = document.getElementById(pageId);
-      target.classList.add('active-page');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("show");
-    }
-
-    document.getElementById("contact-form").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const form = this;
-      const status = document.getElementById("form-status");
-      const loader = document.getElementById("loader");
-
-      status.innerHTML = "";
-      loader.style.display = "inline-block";
-
-      emailjs.sendForm('service_saxucfp', 'template_50cq0q1', form)
-        .then(() => {
-          loader.style.display = "none";
-          status.innerHTML = "✅ Mensaje enviado correctamente.";
-          form.reset();
-        }, (err) => {
-          loader.style.display = "none";
-          status.innerHTML = "❌ Error al enviar el mensaje. Intenta más tarde.";
-          console.error(err);
-        });
-    });
-
-    // Cerrar menú si se hace clic fuera
-    document.addEventListener("click", function (e) {
-      const menu = document.getElementById("menu");
-      const toggle = document.querySelector(".menu-toggle");
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        menu.classList.remove("show");
-      }
-    });
-
-    // Cerrar menú al deslizar hacia arriba en móvil
-    let touchStartY = 0;
-
-    document.addEventListener("touchstart", function (e) {
-      touchStartY = e.changedTouches[0].clientY;
-    }, { passive: true });
-
-    document.addEventListener("touchend", function (e) {
-      const touchEndY = e.changedTouches[0].clientY;
-      if (touchStartY - touchEndY > 50) {
-        document.getElementById("menu").classList.remove("show");
-      }
-    }, { passive: true });
-  </script>
-  
 </body>
 </html>
+
