@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+  
+  
+  <head>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Stecom - Soluciones Tecnológicas Comerciales</title>
@@ -8,239 +11,303 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: #f4f4f4;
-      color: #222;
-      overflow-x: hidden;
-    }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #f4f4f4;
+    color: #222;
+    overflow-x: hidden;
+  }
 
+  header {
+    position: relative;
+    text-align: center;
+    color: white;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/fondo-header.jpeg') center/cover no-repeat;
+    animation: fadeInDown 2s ease-in-out;
+    padding: 4rem 1rem;
+  }
+
+  header img {
+    width: 80px;
+    margin-bottom: 1rem;
+  }
+
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+  }
+
+  header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.9;
+  }
+
+  nav {
+    background: #111;
+  }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  #menu {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  #menu a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.4s ease;
+  }
+
+  #menu a:hover {
+    background-color: #333;
+  }
+
+  .page {
+    display: none;
+    padding: 3rem 1rem;
+    max-width: 900px;
+    margin: auto;
+    animation: fadeInUp 1.8s ease-in-out;
+  }
+
+  .active-page {
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .gallery img {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.4s ease;
+  }
+
+  .gallery img:hover {
+    transform: scale(1.03);
+  }
+
+  video {
+    width: 100%;
+    margin-top: 2rem;
+    border-radius: 6px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .contact-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #222;
+    color: white;
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-btn:hover {
+    transform: scale(1.1);
+  }
+
+  footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+  }
+
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
     header {
-      position: relative;
-      text-align: center;
-      color: white;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('imagenes/fondo-header.jpeg') center/cover no-repeat;
-      animation: fadeInDown 2s ease-in-out;
       padding: 4rem 1rem;
     }
 
-    header img {
-      width: 80px;
-      margin-bottom: 1rem;
-    }
-
-    header h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 2px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      font-weight: 300;
-      opacity: 0.9;
-    }
-
-    nav {
-      background: #111;
-    }
-
     .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 2rem;
-      padding: 1rem;
-      cursor: pointer;
-    }
-
-    #menu {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    #menu a {
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      padding: 0.75rem 1rem;
-      border-radius: 4px;
-      transition: background-color 0.4s ease;
-    }
-
-    #menu a:hover {
-      background-color: #333;
-    }
-
-    .page {
-      display: none;
-      padding: 3rem 1rem;
-      max-width: 900px;
-      margin: auto;
-      animation: fadeInUp 1.8s ease-in-out;
-    }
-
-    .active-page {
       display: block;
     }
 
-    h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2rem;
-      color: #444;
-      margin-bottom: 1rem;
+    #menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
+    #menu.show {
+      display: flex;
     }
 
-    .gallery img {
+    #menu a {
       width: 100%;
-      border-radius: 6px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      transition: transform 0.4s ease;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.03);
-    }
-
-    video {
-      width: 100%;
-      margin-top: 2rem;
-      border-radius: 6px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
-    }
-
-    .contact-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #222;
-      color: white;
-      padding: 1rem;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      cursor: pointer;
-      z-index: 1000;
-      transition: transform 0.3s ease;
-    }
-
-    .contact-btn:hover {
-      transform: scale(1.1);
-    }
-
-    footer {
-      background-color: #222;
-      color: white;
       text-align: center;
-      padding: 2rem 1rem;
-      margin-top: 2rem;
     }
+  }
 
-    @keyframes fadeInDown {
-      from { opacity: 0; transform: translateY(-30px); }
-      to   { opacity: 1; transform: translateY(0); }
+  @media (min-width: 769px) {
+    header {
+      padding: 8rem 1rem 4rem 1rem;
     }
+  }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+  /* Estilos para submenú */
+  .subhamburger-menu {
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    width: fit-content;
+    border-radius: 8px;
+    margin: 10px auto;
+  }
 
-    @media (max-width: 768px) {
-      header {
-        padding: 4rem 1rem;
-      }
+  .subnav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
 
-      .menu-toggle {
-        display: block;
-      }
+  .subnav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    background-color: #eee;
+    padding: 8px 15px;
+    border-radius: 5px;
+  }
 
-      #menu {
-        display: none;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      #menu.show {
-        display: flex;
-      }
-
-      #menu a {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    @media (min-width: 769px) {
-      header {
-        padding: 8rem 1rem 4rem 1rem;
-      }
-    }
-  </style>
+  .subnav-links a:hover {
+    background-color: #ccc;
+  }
+</style>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    (function () {
-      emailjs.init("qePCTuyu5Pyg7Ep2y");
-    })();
+  
+  
+ <script>
+  (function () {
+    emailjs.init("qePCTuyu5Pyg7Ep2y");
+  })();
 
-    function navigateTo(pageId) {
-      document.querySelectorAll('.page').forEach(p => {
-        p.classList.remove('active-page');
-        void p.offsetWidth;
-      });
-      const target = document.getElementById(pageId);
-      target.classList.add('active-page');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+  function toggleMenu() {
+    document.getElementById("menu").classList.toggle("show");
+  }
 
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("show");
-    }
+  function toggleSubMenu(el) {
+    const menu = el.nextElementSibling;
+    menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+  }
 
-    document.addEventListener("click", function (e) {
-      const menu = document.getElementById("menu");
-      const toggle = document.querySelector(".menu-toggle");
-      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
-        menu.classList.remove("show");
-      }
+  function navigateTo(pageId) {
+    // Oculta todas las páginas
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active-page');
+      p.style.display = 'none';
+      void p.offsetWidth;
     });
 
-    let touchStartY = 0;
+    // Muestra la página destino
+    const target = document.getElementById(pageId);
+    if (target) {
+      target.classList.add('active-page');
+      target.style.display = 'block';
+    }
 
-    document.addEventListener("touchstart", function (e) {
-      touchStartY = e.changedTouches[0].clientY;
-    }, { passive: true });
+    // Cierra todos los submenús
+    document.querySelectorAll('.subnav-links').forEach(menu => {
+      menu.style.display = 'none';
+    });
 
-    document.addEventListener("touchend", function (e) {
-      const touchEndY = e.changedTouches[0].clientY;
-      if (touchStartY - touchEndY > 50) {
-        document.getElementById("menu").classList.remove("show");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Cierra menú y submenús al hacer clic fuera
+  document.addEventListener("click", function (e) {
+    const menu = document.getElementById("menu");
+    const toggle = document.querySelector(".menu-toggle");
+
+    if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+      menu.classList.remove("show");
+    }
+
+    document.querySelectorAll('.subnav-links').forEach(sub => {
+      if (!sub.contains(e.target) && !e.target.classList.contains("subhamburger-menu")) {
+        sub.style.display = "none";
       }
-    }, { passive: true });
+    });
+  });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      const form = document.getElementById('contact-form');
-      const status = document.getElementById("form-status");
+  // Oculta menú en desplazamiento táctil hacia arriba
+  let touchStartY = 0;
 
+  document.addEventListener("touchstart", function (e) {
+    touchStartY = e.changedTouches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener("touchend", function (e) {
+    const touchEndY = e.changedTouches[0].clientY;
+    if (touchStartY - touchEndY > 50) {
+      document.getElementById("menu").classList.remove("show");
+    }
+  }, { passive: true });
+
+  // Manejo del formulario con EmailJS
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById("form-status");
+
+    if (form && status) {
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -253,9 +320,14 @@
             console.error(err);
           });
       });
-    });
-  </script>
+    }
+  });
+</script>
+
+  
 </head>
+
+
 <body>
 
   <header>
@@ -280,16 +352,145 @@
     <p>Somos especialistas en el mantenimiento y reparación de equipos industriales para comercios del sector alimentario.</p>
     <video controls src="videos/inicio.mp4"></video>
   </div>
-
+  
   <div id="refrigeracion" class="page">
     <h2>Refrigeración Comercial</h2>
     <p>Servicio técnico de cámaras frigoríficas, vitrinas, congeladores y más. Garantizamos la eficiencia de tu equipo en todo momento.</p>
+    
+    <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+   <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+    
     <div class="gallery">
       <img src="imagenes/Trabajo 1.jpeg" alt="Refrigerador comercial reparado">
       <img src="imagenes/Trabajo 2.jpeg" alt="Servicio técnico en cámara fría">
     </div>
     <video controls src="videos/refrigeracion.mp4"></video>
   </div>
+
+      <section id="enfriadores" class="page">
+  <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+  <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+  <h1>Enfriadores Verticales</h1>
+  <p>Ideales para bebidas y lácteos.</p>
+  <div class="gallery">
+    <img src="img/enfriador1.jpg" alt="Enfriador 1">
+    <img src="img/enfriador2.jpg" alt="Enfriador 2">
+  </div>
+  <video src="videos/enfriadores.mp4" controls></video>
+</section>
+
+      <section id="congeladores-verticales" class="page">
+  <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+  <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+  <h1>Congeladores Verticales</h1>
+  <p>Perfectos para conservar productos congelados con acceso práctico.</p>
+  <div class="gallery">
+    <img src="img/congelador-vertical1.jpg" alt="Congelador Vertical 1">
+    <img src="img/congelador-vertical2.jpg" alt="Congelador Vertical 2">
+  </div>
+  <video src="videos/congeladores-verticales.mp4" controls></video>
+</section>
+
+      <section id="congeladores-horizontales" class="page">
+  <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+  <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+  <h1>Congeladores Horizontales</h1>
+  <p>Ideales para almacenamiento de grandes volúmenes congelados.</p>
+  <div class="gallery">
+    <img src="img/congelador-horizontal1.jpg" alt="Congelador Horizontal 1">
+    <img src="img/congelador-horizontal2.jpg" alt="Congelador Horizontal 2">
+  </div>
+  <video src="videos/congeladores-horizontales.mp4" controls></video>
+</section>
+
+      <section id="vitrinas" class="page">
+  <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+  <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+  <h1>Vitrinas Refrigeradas</h1>
+  <p>Diseñadas para mostrar alimentos refrigerados en puntos de venta.</p>
+  <div class="gallery">
+    <img src="img/vitrina1.jpg" alt="Vitrina 1">
+    <img src="img/vitrina2.jpg" alt="Vitrina 2">
+  </div>
+  <video src="videos/vitrinas.mp4" controls></video>
+</section>
+
+      <section id="exhibidores" class="page">
+  <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+ <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+  <h1>Exhibidores</h1>
+  <p>Excelente opción para mostrar productos en tiendas y supermercados.</p>
+  <div class="gallery">
+    <img src="img/exhibidor1.jpg" alt="Exhibidor 1">
+    <img src="img/exhibidor2.jpg" alt="Exhibidor 2">
+  </div>
+  <video src="videos/exhibidores.mp4" controls></video>
+</section>
+
+      <section id="camaras-reachin" class="page">
+  <div class="subhamburger-menu" onclick="toggleSubMenu(this)">☰ Subcategorías</div>
+  <div class="subnav-links">
+    <a href="#" onclick="navigateTo('enfriadores')">Enfriadores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-verticales')">Congeladores Verticales</a>
+    <a href="#" onclick="navigateTo('congeladores-horizontales')">Congeladores Horizontales</a>
+    <a href="#" onclick="navigateTo('vitrinas')">Vitrinas Refrigeradas</a>
+    <a href="#" onclick="navigateTo('exhibidores')">Exhibidores</a>
+    <a href="#" onclick="navigateTo('camaras-reachin')">Cámaras y Reach In</a>
+  </div>
+
+  <h1>Cámaras de Refrigeración, Congelación y Tipo Reach In</h1>
+  <p>Soluciones para conservar productos a diferentes temperaturas: refrigeración, congelación y acceso rápido tipo Reach In, ideales para uso industrial y comercial.</p>
+
+  <div class="gallery">
+    <img src="img/camara-refrigeracion.jpg" alt="Cámara de Refrigeración">
+    <img src="img/camara-congelacion.jpg" alt="Cámara de Congelación">
+    <img src="img/reachin.jpg" alt="Equipo Reach In">
+  </div>
+
+  <video src="videos/camaras-reachin.mp4" controls></video>
+</section>
 
   <div id="coccion" class="page">
     <h2>Equipos de Cocción</h2>
@@ -300,6 +501,9 @@
     </div>
     <video controls src="videos/coccion.mp4"></video>
   </div>
+  
+  
+  
 
   <div id="panaderia" class="page">
     <h2>Maquinaria de Panadería</h2>
